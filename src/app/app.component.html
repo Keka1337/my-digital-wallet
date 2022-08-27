@@ -1,3 +1,31 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" contentId="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title> My Digital Wallet </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-icon name="person-circle" slot="start"></ion-icon>
+          <ion-label>Moj profil</ion-label>
+        </ion-item>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/transakcije">
+            <ion-icon name="document-text" slot="start"></ion-icon>
+            <ion-label>Transakcije</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-item>
+          <ion-icon name="log-out" slot="start"></ion-icon>
+          <ion-label>Log out</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

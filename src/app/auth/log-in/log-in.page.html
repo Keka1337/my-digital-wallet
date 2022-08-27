@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>log-in</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- hvata se ngSubmit event , da bismo imali pristup svim poljima forme moramo da dodamo ngForm -->
+  <form #LogInForm="ngForm" (ngSubmit)="onLogIn(LogInForm)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input
+                type="email"
+                ngModel
+                name="email"
+                required
+                #email="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item lines="none" *ngIf="email.invalid && email.touched">
+              <ion-label color="danger"
+                >Email adresa mora biti validna</ion-label
+              >
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Lozinka</ion-label>
+              <ion-input
+                type="password"
+                ngModel
+                name="lozinka"
+                required
+                minLength="6"
+                #lozinka="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item lines="none" *ngIf="lozinka.invalid && lozinka.touched">
+              <ion-label color="danger"
+                >Lozinka mora imati najmanje 6 karaktera</ion-label
+              >
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-sm="6">
+          <ion-button
+            type="submit"
+            expand="block"
+            shape="round"
+            [disabled]="LogInForm.invalid"
+            >Log In</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-sm="6">
+        <ion-button
+          type="submit"
+          expand="block"
+          shape="round"
+          routerLink="/registracija"
+          >Registruj se</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
