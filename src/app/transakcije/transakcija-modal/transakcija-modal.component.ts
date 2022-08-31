@@ -1,0 +1,39 @@
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+
+@Component({
+  selector: 'app-transakcija-modal',
+  templateUrl: './transakcija-modal.component.html',
+  styleUrls: ['./transakcija-modal.component.scss'],
+})
+export class TransakcijaModalComponent implements OnInit {
+  @ViewChild('f', { static: true }) form: NgForm;
+  @Input() naslovStranice: string;
+
+  constructor(private modalCtrl: ModalController) {}
+
+  ngOnInit() {}
+
+  onCancel() {
+    this.modalCtrl.dismiss(null, 'cancel');
+  }
+
+  //MODAL NE VRACA PODATKE KOJE BI TREBALO DA VRATI
+  //VEZBE 10, 5.1 SU SLEDECE
+
+  dodajTransakciju() {
+    if (!this.form.valid) {
+      return;
+    }
+    this.modalCtrl.dismiss(
+      {
+        transakcijaPodaci: {
+          naslov: this.form.value['naslov'],
+          podnaslov: this.form.value['podnaslov'],
+        },
+      },
+      'confirm'
+    );
+  }
+}

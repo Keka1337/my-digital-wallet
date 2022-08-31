@@ -1,3 +1,15 @@
 <ion-item>
-  <ion-label> {{ transakcija.naslov }} </ion-label>
+  <ion-item>
+    <ion-label
+      [routerLink]="['/', 'quotes', 'tabs', 'explore', transakcija.id]"
+    >
+      {{ transakcija.naslov }}
+    </ion-label>
+  </ion-item>
+
+  <ion-icon
+    name="bookmark-outline"
+    slot="end"
+    (click)="openAlert($event)"
+  ></ion-icon>
 </ion-item>
