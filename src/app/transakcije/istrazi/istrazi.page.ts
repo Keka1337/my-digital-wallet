@@ -20,7 +20,26 @@ export class IstraziPage implements OnInit {
     this.transakcije = this.transService.transakcije;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.transService.vratiSveTransakcije().subscribe((transakcijaPodaci) => {
+      console.log(transakcijaPodaci);
+      let transakcijePomocni: Transakcija[];
+      for (const key in transakcijaPodaci) {
+        transakcijePomocni.push({
+          id: key,
+          naslov: transakcijaPodaci[key].naslov,
+          podnaslov: transakcijaPodaci[key].podnaslov,
+          kategorija: transakcijaPodaci[key].kategorija,
+          iznos: transakcijaPodaci[key].iznos,
+        });
+      }
+      if (transakcijePomocni == null) {
+        console.log('Vasa istorija transakcija je trenutno prazna!');
+      } else {
+        this.transakcije = transakcijePomocni;
+      }
+    });
+  }
 
   openModal() {
     this.modalCtrl
@@ -35,8 +54,16 @@ export class IstraziPage implements OnInit {
       .then((resultData: OverlayEventDetail<any>) => {
         if (resultData.role === 'confirm') {
           console.log(resultData);
-        } else {
-          console.log('Neuspesno vracanje podataka!');
+          this.transService
+            .dodaj(
+              resultData.data.naslov,
+              resultData.data.podnaslov,
+              resultData.data.kategorija,
+              resultData.data.iznos
+            )
+            .subscribe((res) => {
+              console.log(res);
+            });
         }
       });
   }

@@ -31,6 +31,8 @@ export class TransakcijaModalComponent implements OnInit {
         transakcijaPodaci: {
           naslov: this.form.value['naslov'],
           podnaslov: this.form.value['podnaslov'],
+          kategorija: this.form.value['kategorija'],
+          iznos: this.form.value['iznos'],
         },
       },
       'confirm'

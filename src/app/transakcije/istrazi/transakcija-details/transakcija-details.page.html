@@ -13,6 +13,16 @@
     <ion-card-header>
       <ion-card-title>{{transakcija.naslov}}</ion-card-title>
     </ion-card-header>
-    <ion-card-content> {{transakcija.podnaslov}} </ion-card-content>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="6"> {{transakcija.kategorija}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="6"> {{transakcija.podnaslov}} </ion-col>
+          <ion-col> {{transakcija.iznos}} </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
   </ion-card>
 </ion-content>
