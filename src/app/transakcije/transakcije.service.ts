@@ -1,11 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Transakcija } from './transakcija.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransakcijeService {
+  private _transakcije: Transakcija[] = [];
+
+  private get transakcija(): Transakcija[] {
+    return this._transakcije;
+  }
+
   transakcije: Transakcija[] = [
     {
       id: '1',
@@ -37,9 +44,27 @@ export class TransakcijeService {
   }
 
   vratiSveTransakcije() {
-    return this.http.get<{ [key: string]: Transakcija }>(
-      'https://my-digital-wallet-7752b-default-rtdb.europe-west1.firebasedatabase.app/transakcije.json'
-    );
+    return this.http
+      .get<{ [key: string]: Transakcija }>(
+        'https://my-digital-wallet-7752b-default-rtdb.europe-west1.firebasedatabase.app/transakcije.json'
+      )
+      .pipe(
+        map((transakcijaPodaci) => {
+          let transakcije: Transakcija[];
+          for (const key in transakcijaPodaci) {
+            if (transakcijaPodaci.hasOwnProperty(key)) {
+              transakcije.push({
+                id: key,
+                naslov: transakcijaPodaci[key].naslov,
+                podnaslov: transakcijaPodaci[key].podnaslov,
+                kategorija: transakcijaPodaci[key].kategorija,
+                iznos: transakcijaPodaci[key].iznos,
+              });
+            }
+          }
+          return transakcije;
+        })
+      );
   }
 
   vratiTransakciju(id: string) {
