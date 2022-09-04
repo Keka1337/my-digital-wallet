@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
+import { Subscriber, Subscription } from 'rxjs';
 import { TransakcijaModalComponent } from '../transakcija-modal/transakcija-modal.component';
 import { Transakcija } from '../transakcija.model';
 import { TransakcijeService } from '../transakcije.service';
@@ -12,19 +13,28 @@ import { TransakcijeService } from '../transakcije.service';
 })
 export class IstraziPage implements OnInit {
   transakcije: Transakcija[];
+  private _transSub: Subscription;
 
   constructor(
     private transService: TransakcijeService,
     private modalCtrl: ModalController
   ) {
-    this.transakcije = this.transService.transakcije;
+    // this.transakcije = this.transService.transakcije;
   }
 
   ngOnInit() {
+    this._transSub = this.transService.transakcije.subscribe(
+      (transakcije: Transakcija[]) => {
+        this.transakcije = transakcije;
+      }
+    );
+  }
+
+  ionViewWillEnter() {
     this.transService
       .vratiSveTransakcije()
       .subscribe((transakcije: Transakcija[]) => {
-        this.transakcije = transakcije;
+        // this.transakcije = transakcije;
       });
   }
 
@@ -48,10 +58,16 @@ export class IstraziPage implements OnInit {
               resultData.data.kategorija,
               resultData.data.iznos
             )
-            .subscribe((res) => {
-              console.log(res);
+            .subscribe((transakcije) => {
+              // this.transakcije = transakcije;
             });
         }
       });
+  }
+
+  ngOnDestroy() {
+    if (this._transSub) {
+      this._transSub.unsubscribe();
+    }
   }
 }
