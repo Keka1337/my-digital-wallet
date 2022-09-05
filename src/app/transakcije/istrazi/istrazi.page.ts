@@ -18,9 +18,7 @@ export class IstraziPage implements OnInit {
   constructor(
     private transService: TransakcijeService,
     private modalCtrl: ModalController
-  ) {
-    // this.transakcije = this.transService.transakcije;
-  }
+  ) {}
 
   ngOnInit() {
     this._transSub = this.transService.transakcije.subscribe(

@@ -10,6 +10,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./log-in.page.scss'],
 })
 export class LogInPage implements OnInit {
+  isLoading = false;
+
   constructor(
     private authService: AuthService,
     private loadingCtrl: LoadingController,
@@ -20,10 +22,13 @@ export class LogInPage implements OnInit {
   ngOnInit() {}
 
   onLogIn(form: NgForm) {
+    this.isLoading = true;
+
     if (form.valid) {
       this.authService.logIn(form.value).subscribe((resData) => {
         console.log('Uspesna prijava!');
         console.log(resData);
+        this.isLoading = false;
         this.router.navigateByUrl('/transakcije');
       });
     }
