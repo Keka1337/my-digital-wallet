@@ -20,9 +20,13 @@ export class LogInPage implements OnInit {
   ngOnInit() {}
 
   onLogIn(form: NgForm) {
-    this.authService.logIn();
-    this.router.navigateByUrl('/transakcije');
-    console.log(form);
+    if (form.valid) {
+      this.authService.logIn(form.value).subscribe((resData) => {
+        console.log('Uspesna prijava!');
+        console.log(resData);
+        this.router.navigateByUrl('/transakcije');
+      });
+    }
   }
 
   // logIn(logInForm: NgForm) {

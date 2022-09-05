@@ -17,7 +17,7 @@
         <ion-col size-sm="3" offset-sm="3">
           <ion-item>
             <ion-label position="floating">Ime</ion-label>
-            <ion-input type="text" formControlName="ime" required> </ion-input>
+            <ion-input type="text" formControlName="name" required> </ion-input>
           </ion-item>
         </ion-col>
         <ion-col size-sm="3">
@@ -25,7 +25,7 @@
             <ion-label position="floating">Prezime</ion-label>
             <ion-input
               type="text"
-              formControlName="prezime"
+              formControlName="lastname"
               required
               minLength="6"
             ></ion-input>
@@ -63,7 +63,7 @@
               <ion-label position="floating">Password</ion-label>
               <ion-input
                 type="password"
-                formControlName="lozinka"
+                formControlName="password"
                 required
                 minLength="6"
               ></ion-input>
@@ -73,7 +73,7 @@
       </ion-row>
 
       <ion-row
-        *ngIf="registerForm.get('lozinka').invalid && registerForm.get('lozinka').touched"
+        *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched"
       >
         <ion-col size-sm="6" offset-sm="3">
           <p>Lozinka mora imati najmanje 6 karaktera</p>

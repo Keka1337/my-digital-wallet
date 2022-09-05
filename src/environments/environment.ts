@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  firebaseAPIkey: 'AIzaSyAoSTO2txohKuIp_FJODFEm5x3ZMf2K-20',
+  firebaseConfig: {
+    apiKey: 'AIzaSyAoSTO2txohKuIp_FJODFEm5x3ZMf2K-20',
+    authDomain: 'my-digital-wallet-7752b.firebaseapp.com',
+    databaseURL:
+      'https://my-digital-wallet-7752b-default-rtdb.europe-west1.firebasedatabase.app',
+    projectId: 'my-digital-wallet-7752b',
+    storageBucket: 'my-digital-wallet-7752b.appspot.com',
+    messagingSenderId: '755544469371',
+    appId: '1:755544469371:web:22a9f2058d4d0d2aba17de',
+  },
 };
 
 /*

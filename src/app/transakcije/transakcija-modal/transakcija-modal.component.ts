@@ -19,9 +19,6 @@ export class TransakcijaModalComponent implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  //MODAL NE VRACA PODATKE KOJE BI TREBALO DA VRATI
-  //VEZBE 10, 5.1 SU SLEDECE
-
   dodajTransakciju() {
     if (!this.form.valid) {
       return;
