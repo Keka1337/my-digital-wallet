@@ -31,15 +31,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  get isUserAuthenticated(): boolean {
-    // return this._user.asObservable().pipe(map(user:User)=>{
-    //    if(user){
-    //      return !!user.token;
-    //    }else{
-    //      return false;
-    //   }
-    // });
-    return true;
+  get isUserAuthenticated() {
+    return this._user.asObservable().pipe(
+      map((user: User) => {
+        if (user) {
+          return !!user.token; //proveravamo token i vrsimo konverziju u boolean
+        } else {
+          return false;
+        }
+      })
+    );
   }
   registrujSe(user: UserData) {
     this._isUserAuthenticated = true;
@@ -88,6 +89,6 @@ export class AuthService {
   }
 
   logOut() {
-    this._isUserAuthenticated = false;
+    this._user.next(null);
   }
 }
