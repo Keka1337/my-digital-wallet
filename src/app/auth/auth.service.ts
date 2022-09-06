@@ -42,6 +42,19 @@ export class AuthService {
       })
     );
   }
+
+  get userId() {
+    return this._user.asObservable().pipe(
+      map((user: User) => {
+        if (user) {
+          return user.id;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
   registrujSe(user: UserData) {
     this._isUserAuthenticated = true;
     return this.http

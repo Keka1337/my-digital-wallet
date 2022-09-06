@@ -1,7 +1,11 @@
-export interface Transakcija {
-  id: string;
-  naslov: string;
-  podnaslov: string;
-  kategorija: string;
-  iznos: number;
+export class Transakcija {
+  constructor(
+    public id: string,
+    public naslov: string,
+    public podnaslov: string,
+    public kategorija: string,
+    public tipId: string,
+    public iznos: number,
+    public userId: string
+  ) {}
 }

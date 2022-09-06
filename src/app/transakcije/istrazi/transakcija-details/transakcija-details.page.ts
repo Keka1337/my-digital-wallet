@@ -14,7 +14,9 @@ export class TransakcijaDetailsPage implements OnInit {
     naslov: 'Plata',
     podnaslov: 'Mesec jun',
     kategorija: 'Priliv',
+    tipId: 'xx',
     iznos: 100,
+    userId: 'xx',
   };
   constructor(
     private route: ActivatedRoute,

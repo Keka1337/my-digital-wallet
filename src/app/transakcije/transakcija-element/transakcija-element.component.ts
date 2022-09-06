@@ -13,7 +13,9 @@ export class TransakcijaElementComponent implements OnInit {
     naslov: 'Plata',
     podnaslov: 'Jul',
     kategorija: 'Priliv',
+    tipId: 'xx',
     iznos: 200,
+    userId: 'xx',
   };
 
   constructor(private alertCtrl: AlertController) {}
