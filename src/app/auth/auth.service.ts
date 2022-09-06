@@ -33,10 +33,10 @@ export class AuthService {
 
   get isUserAuthenticated(): boolean {
     // return this._user.asObservable().pipe(map(user:User)=>{
-    // if(user){
-    // return !!user.token;
-    // }else{
-    //  return false;
+    //    if(user){
+    //      return !!user.token;
+    //    }else{
+    //      return false;
     //   }
     // });
     return true;
